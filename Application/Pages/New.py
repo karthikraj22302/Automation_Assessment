@@ -56,7 +56,7 @@ class Cls_new(Cls_Po_Login):
         self.driver = driver
 
     def Assement(self,Name,M_Name,F_Name,Bday,byear,Address,City,State,Phone_No):
-        #Verify dashboard page is redirected using Assertion.
+        #Verify dashboard page is redirected using Assertion
         self.assert_condition(self.is_element_visible("xpath",Locators_New.REGISTER),
                               "Dashboard page is visible after login.",
                               "Dashboard page is not visible after login.")
