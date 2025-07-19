@@ -1,0 +1,12 @@
+requests
+numpy
+pandas
+matplotlib
+seaborn
+selenium
+pytest
+openpyxl
+pyautogui
+pymongo
+# Local wheel file installation
+C:\karthik\Project\Application\Resources\Input\Citpl_Fw-2.0.0-py3-none-any.whl
