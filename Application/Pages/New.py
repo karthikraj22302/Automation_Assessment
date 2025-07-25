@@ -43,6 +43,8 @@ class Locators_New():
     ATTACH_POP_MSG="//p[text()='The attachment was successfully uploaded.']"
     END_VISIT="//h3[text()='ALLERGIES']/parent::div/parent::div/parent::div/parent::div/parent::div//following-sibling::div/child::div/child::ul/child::li[@class='float-left']/child::a[@id='referenceapplication.realTime.endVisit']"
     END_YES_BTN="//span[text()='Are you sure you want to end this visit?']/ancestor::div//button[text()='Yes']"
+    IMG_VER = "//div[@class='ng-scope']/child::img"
+    VIS_ATTACH = "//div[text()='Attachment Upload']"
     # delete
     DELETE_BTN="//div[contains(text(),'Delete Patient')]"
     DELETE_TXT="//input[@id='delete-reason']"
@@ -66,6 +68,7 @@ class Cls_new(Cls_Po_Login):
         # Enter the detail of Demographics(Name, Gender, Birthdate) and Contact Info(Address, Phone number)
         self.enter_text("xpath",Locators_New.PATIENT_NAME,Name)
         Name_find=Name
+        Name_find = Name_find.strip()
         self.enter_text("xpath",Locators_New.MIDDLE_NMAE,M_Name)
         self.enter_text("xpath",Locators_New.FAMILY_NAME,F_Name)
         self.click("xpath",Locators_New.RIGHT_NEXT_BTN)
@@ -131,6 +134,8 @@ class Cls_new(Cls_Po_Login):
         #Redirect to the Patient details screen(its fail case iam using another type redirect)
         self.click_by_jse(By.XPATH, f"//a[contains(text(), '{Name_find}')]")
         self.driver.implicitly_wait(10)
+        self.assert_condition(self.is_element_visible("xpath", Locators_New.VIS_ATTACH),"Attachment Upload Tag is visiable", "Attachment Upload Tag is not  visiable")
+        self.assert_condition(self.is_element_visible("xpath", Locators_New.IMG_VER), "img is displayed in Attachment","img is not displayed in Attachment")
         #Click on the End Visit action at RHS.
         self.click("xpath",Locators_New.END_VISIT)
         self.click("xpath", Locators_New.END_YES_BTN)
